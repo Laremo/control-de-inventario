@@ -1,18 +1,16 @@
 import { Router } from 'express';
+import deviceController from '../../controllers/device-controller/device-controller.js';
+import deviceValidations from './middleware/validate-device.js';
 
 const deviceRouter = Router();
 
-deviceRouter.get('/', (req, res) => {
-  res.status(509).json({ msg: 'should return all the devices' });
-});
-deviceRouter.post('/', (req, res) => {
-  res.status(509).json({ msg: 'should save a device' });
-});
-deviceRouter.put('/:id', (req, res) => {
-  res.status(509).json({ msg: 'should update a device' });
-});
-deviceRouter.delete('/:id', (req, res) => {
-  res.status(509).json({ msg: 'should delete a device' });
-});
+deviceRouter.get('/', deviceController.getDevices);
+deviceRouter.post(
+  '/',
+  deviceValidations.validateSaveRequest,
+  deviceController.saveDevice
+);
+deviceRouter.put('/:id', deviceController.updateDevice);
+deviceRouter.delete('/:id', deviceController.deleteDevice);
 
 export default deviceRouter;

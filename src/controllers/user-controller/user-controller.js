@@ -1,27 +1,27 @@
 const userController = {};
 
-userController.saveDevice = async (req, res) => {
+userController.saveUser = async (req, res) => {
   try {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-userController.getDevices = async (req, res) => {
+userController.getUsers = async (req, res) => {
   try {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-userController.updateDevice = async (req, res) => {
+userController.updateUser = async (req, res) => {
   try {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-userController.deleteDevice = async (req, res) => {
+userController.deleteUser = async (req, res) => {
   try {
   } catch (error) {
     res.status(500).json({ error: error.message });

@@ -1,27 +1,27 @@
 const loanController = {};
 
-loanController.saveDevice = async (req, res) => {
+loanController.registerLoan = async (req, res) => {
   try {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-loanController.getDevices = async (req, res) => {
+loanController.getLoans = async (req, res) => {
   try {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-loanController.updateDevice = async (req, res) => {
+loanController.updateLoan = async (req, res) => {
   try {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-loanController.deleteDevice = async (req, res) => {
+loanController.deleteLoan = async (req, res) => {
   try {
   } catch (error) {
     res.status(500).json({ error: error.message });
