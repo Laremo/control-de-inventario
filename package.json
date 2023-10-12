@@ -1,0 +1,19 @@
+{
+  "name": "control-de-inventario",
+  "version": "1.0.0",
+  "description": "This is an application for the management of several devices assigned to several users, as well as the return of a device to be assigned to another user",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "laremo",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
