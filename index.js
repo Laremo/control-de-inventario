@@ -12,6 +12,11 @@ const PORT = process.env.PORT || 3000;
 
 app.use(Express.json());
 
+//setting the static SPA
+app.use(
+  Express.static(process.cwd + '/src/client/devices-management-client/dist')
+);
+
 //setting the routing
 app.use('/api/user', userRouter);
 app.use('/api/device', deviceRouter);
