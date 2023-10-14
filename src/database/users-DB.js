@@ -30,10 +30,10 @@ const getUser = (idUser) => {
 };
 
 const updateUser = (idUser, updatedUser) => {
-  const User = users.find((user) => user.IdUser === idUser);
-  if (!User) return new Error("User doesn't exist");
+  const index = users.findIndex((user) => user.IdUser === idUser);
+  if (!index) return new Error("User doesn't exist");
 
-  User = updatedUser;
+  users[index] = updatedUser;
   return updatedUser;
 };
 

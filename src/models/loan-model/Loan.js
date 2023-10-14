@@ -1,11 +1,11 @@
 class Loan {
-  constructor(device, user, loanDate) {
-    this.device = device;
-    this.user = user;
+  constructor(idDevice, idUser, loanDate) {
+    this.idDevice = idDevice;
+    this.idUser = idUser;
     this.loanDate = loanDate;
     this.returnDate = null;
   }
-
+  //if we need to renew a loan
   updateLoanDate(newDate) {
     this.loanDate = newDate;
   }

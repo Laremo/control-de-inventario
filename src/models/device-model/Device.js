@@ -11,7 +11,14 @@ const Statuses = {
 };
 
 class Device {
-  constructor(IdDevice = null, Name, idType, Make, Status, Description) {
+  constructor(
+    IdDevice = null,
+    Name,
+    idType,
+    Make,
+    Status,
+    Description = 'Sin información'
+  ) {
     this.IdDevice = IdDevice;
     this.Name = Name;
     this.Type = DeviceTypes[`${idType}`];
