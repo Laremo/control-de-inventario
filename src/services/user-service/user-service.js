@@ -1,11 +1,40 @@
-const loanService = {};
+import userDb from '../../database/users-DB';
+const userService = {};
 
-loanService.saveDevice = async (device) => {};
+userService.saveUser = async (user) => {
+  try {
+    const result = await userDb.saveUser(user);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
 
-loanService.getDevices = async () => {};
+userService.getUsers = async () => {
+  try {
+    const users = await userDb.getUsers();
+    return users;
+  } catch (error) {
+    throw error;
+  }
+};
 
-loanService.updateDevice = async (IdDevice, updatedDevice) => {};
+userService.updateUser = async (idUser, updatedUser) => {
+  try {
+    const result = await userDb.updateUser(idUser, updatedUser);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
 
-loanService.deleteDevice = async (idDevice) => {};
+userService.deleteUser = async (idUser) => {
+  try {
+    const result = await userDb.deleteUser(idUser);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
 
-export default loanService;
+export default userService;

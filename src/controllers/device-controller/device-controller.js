@@ -14,7 +14,7 @@ deviceController.saveDevice = async (req, res) => {
   }
 };
 
-deviceController.getDevices = async (req, res) => {
+deviceController.getDevices = async (_, res) => {
   try {
     const result = await deviceService.getDevices();
     return res.status(200).json(result);
@@ -38,6 +38,11 @@ deviceController.updateDevice = async (req, res) => {
 
 deviceController.deleteDevice = async (req, res) => {
   try {
+    const { idDevice } = req.body;
+    const result = await deviceService.deleteDevice(idDevice);
+    if (result?.message) return res.status(209).json({ error: result.message });
+
+    return res.status(200).json(result);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
