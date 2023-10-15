@@ -22,9 +22,7 @@ deviceService.getDevices = async () => {
 deviceService.updateDevice = async (IdDevice, updatedDevice) => {
   try {
     const result = await deviceDB.updateDevice(IdDevice, updatedDevice);
-    if (result?.message) return res.status(209).json({ error: result.message });
-
-    return res.status(200).json(result);
+    return result;
   } catch (error) {
     throw error;
   }
@@ -33,8 +31,6 @@ deviceService.updateDevice = async (IdDevice, updatedDevice) => {
 deviceService.deleteDevice = async (idDevice) => {
   try {
     const result = await deviceService.deleteDevice(idDevice);
-    if (result?.message) return res.status(209).json({ error: result.message });
-
     return res.status(200).json(result);
   } catch (error) {
     throw error;

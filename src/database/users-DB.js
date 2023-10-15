@@ -1,11 +1,14 @@
 import User from '../models/user-model/User.js';
+
+const userDb = {};
+
 const users = [
   new User(1, 'Laremo', 'Loooooo', '449 454 33 33', 'laremo@fake.com'),
   new User(2, 'John', 'Doe', '778 932 43 43', 'nobody@nowhere.com'),
   new User(3, 'John', 'Galt', '123 436 45 44', 'whosjohngalt@atlas.com'),
 ];
 
-const saveUser = (user) => {
+userDb.saveUser = async (user) => {
   let maxId = 0;
   for (const us in users) {
     if (user.Name === us.Name && user.Lastname === us.Lastname)
@@ -20,16 +23,16 @@ const saveUser = (user) => {
   return users;
 };
 
-const getUsers = () => {
+userDb.getUsers = async () => {
   return users;
 };
 
-const getUser = (idUser) => {
+userDb.getUser = async (idUser) => {
   const user = users.find((User) => User.IdUser === idUser);
   return user;
 };
 
-const updateUser = (idUser, updatedUser) => {
+userDb.updateUser = async (idUser, updatedUser) => {
   const index = users.findIndex((user) => user.IdUser === idUser);
   if (!index) return new Error("User doesn't exist");
 
@@ -37,7 +40,7 @@ const updateUser = (idUser, updatedUser) => {
   return updatedUser;
 };
 
-const deleteUser = (idUser) => {
+userDb.deleteUser = async (idUser) => {
   const found = users.findIndex((User) => User.IdUser === idUser);
   if (!found) return new Error("User doesn't exist");
 
@@ -46,4 +49,4 @@ const deleteUser = (idUser) => {
   return users;
 };
 
-export { getUser, getUsers, updateUser, deleteUser, saveUser };
+export default userDb;
