@@ -13,6 +13,14 @@ const loans = [
 const loanDB = {};
 
 loanDB.saveLoan = async (loan) => {
+  const device = await deviceDb.getDevice(loan.idDevice);
+  if (!device) return new Error('This device does not exist');
+  if (device.Status > 1) return new Error('This device is not available');
+
+  //update device status
+  device.Status = 2;
+  await deviceDb.updateDevice(device.IdDevice, device);
+
   loans.push(loan);
   return loans;
 };
@@ -56,13 +64,24 @@ loanDB.getHistory = async (idUser) => {
   return joined;
 };
 
-loanDB.updateLoan = async (idUser, idDevice, updatedLoan) => {
+loanDB.updateLoan = async (idUser, idDevice, updatedLoan, options) => {
   const index = loans.findIndex(
     (loan) => loan.idUser === idUser && loan.idDevice === idDevice
   );
   if (!index) return new Error("Loan doesn't exist");
 
+  if (options.isReturning) {
+    const device = await deviceDb.getDevice(idDevice);
+    if (!device) return new Error('This device does not exist');
+
+    //if its damaged, we send 3, else, we send 1, available
+    device.Status = options.isDamaged ? 3 : 1;
+
+    await deviceDb.updateDevice(idDevice, device);
+  }
+
   loans[index] = updatedLoan;
+
   return updatedLoan;
 };
 
