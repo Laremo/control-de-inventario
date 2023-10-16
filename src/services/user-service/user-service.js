@@ -1,4 +1,4 @@
-import userDb from '../../database/users-DB';
+import userDb from '../../database/users-DB.js';
 const userService = {};
 
 userService.saveUser = async (user) => {
