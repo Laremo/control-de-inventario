@@ -43,7 +43,7 @@ userDb.updateUser = async (idUser, updatedUser) => {
 userDb.deleteUser = async (idUser) => {
   const found = users.findIndex((User) => User.IdUser === idUser);
   if (!found) return new Error("User doesn't exist");
-
+  
   users = users.splice(found, 1);
 
   return users;

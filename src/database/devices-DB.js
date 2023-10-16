@@ -33,8 +33,7 @@ deviceDB.getDevice = async (idDevice) => {
 deviceDB.updateDevice = async (idDevice, updatedDevice) => {
   const index = devices.findIndex((dev) => dev.IdDevice === idDevice);
   if (!index) return new Error("Device doesn't exist");
-  //ACTUALIZA SOLO LA SHALLOW COPY
-  /////////////////////////////////////////////////////////// BICHO
+
   devices[index] = updatedDevice;
   return updatedDevice;
 };
