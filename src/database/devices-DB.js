@@ -25,7 +25,7 @@ deviceDB.getDevices = async () => {
   return devices;
 };
 
-const getDevice = async (idDevice) => {
+deviceDB.getDevice = async (idDevice) => {
   const device = devices.find((device) => device.IdDevice === idDevice);
   return device;
 };
