@@ -5,9 +5,8 @@ import JoinedLoan from '../models/loan-model/Joined-Loan.js';
 
 const loans = [
   //  (device, user, date)
-  new Loan(1, 2, new Date('2023-10-10')),
-  new Loan(2, 2, new Date('2023-10-10')),
-  new Loan(1, 2, new Date('2023-10-10')),
+  new Loan(1, 2, new Date('2023-10-10').toISOString()),
+  new Loan(3, 3, new Date('2023-10-10').toISOString()),
 ];
 
 const loanDB = {};
