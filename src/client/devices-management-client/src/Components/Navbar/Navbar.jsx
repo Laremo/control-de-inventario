@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './Navbar.module.css';
 
-export default function Navbar({ mode, setMode }) {
+export default function Navbar({ mode, setMode, closeDetails }) {
   const [navHidden, setNavHidden] = useState(true);
 
   const handleNavBarStatus = () => {
@@ -40,6 +40,7 @@ export default function Navbar({ mode, setMode }) {
             className={mode === 0 ? styles.active : ''}
             onClick={() => {
               setMode(0);
+              closeDetails();
             }}>
             <span>Control de Dispositivos</span>
           </li>
@@ -47,6 +48,7 @@ export default function Navbar({ mode, setMode }) {
             className={mode === 1 ? styles.active : ''}
             onClick={() => {
               setMode(1);
+              closeDetails();
             }}>
             <span>Control de Usuarios</span>
           </li>
@@ -54,6 +56,7 @@ export default function Navbar({ mode, setMode }) {
             className={mode === 2 ? styles.active : ''}
             onClick={() => {
               setMode(2);
+              closeDetails();
             }}>
             <span>Control de Préstamos</span>
           </li>

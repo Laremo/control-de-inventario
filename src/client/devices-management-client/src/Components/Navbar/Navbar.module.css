@@ -14,9 +14,10 @@
   display: flex;
   align-items: center;
   background-color: #010711;
-  height: 12vh;
+  height: 8vh;
   flex: 1;
   user-select: none;
+  overflow: hidden;
 }
 .navbar {
   display: flex;
@@ -45,7 +46,6 @@
   justify-content: center;
   margin: 0;
   transition: 300ms;
-  text-overflow: clip;
 }
 
 .navbar li:hover {
@@ -107,7 +107,7 @@ media query para la navbar
     background: none;
     border: 0;
     padding: 0;
-    top: 2rem;
+    top: 1rem;
     right: 2rem;
     z-index: 99;
     transition: 300ms ease-in;
@@ -121,7 +121,7 @@ media query para la navbar
     background: none;
     border: 0;
     padding: 0;
-    top: 2rem;
+    top: 1rem;
     right: 2rem;
     z-index: 99;
   }
