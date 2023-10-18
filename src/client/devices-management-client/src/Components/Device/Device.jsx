@@ -1,5 +1,5 @@
 import styles from '../Tablebody/tablebody.module.css';
-export default function Device({ item }) {
+export default function Device({ item, openDetails }) {
   const { IdDevice, Name, Status, Make, Description, Type } = item;
   return (
     <tr>
@@ -10,7 +10,7 @@ export default function Device({ item }) {
       <td>{Type}</td>
       <td>{Status}</td>
       <td>
-        <button>Detalles</button>
+        <button onClick={() => openDetails(item)}>Detalles</button>
       </td>
     </tr>
   );

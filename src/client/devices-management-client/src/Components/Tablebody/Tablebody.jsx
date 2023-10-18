@@ -2,7 +2,7 @@ import Device from '../Device/Device';
 import User from '../User/User';
 import Loan from '../Loan/Loan';
 
-export default function Tablebody({ mode, items }) {
+export default function Tablebody({ mode, items, openDetails }) {
   if (!items) return;
   if (mode === 0) {
     return items.map((item, i) => {
@@ -10,6 +10,7 @@ export default function Tablebody({ mode, items }) {
         <Device
           key={i}
           item={item}
+          openDetails={openDetails}
         />
       );
     });
@@ -20,6 +21,7 @@ export default function Tablebody({ mode, items }) {
       <User
         key={i}
         item={item}
+        openDetails={openDetails}
       />
     ));
   }
@@ -28,6 +30,7 @@ export default function Tablebody({ mode, items }) {
       <Loan
         key={i}
         item={item}
+        openDetails={openDetails}
       />
     ));
   }

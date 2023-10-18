@@ -5,10 +5,14 @@
 
 .content {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  height: 88vh;
+  height: 92vh;
   flex: 1;
+}
+
+.mainTable {
+  margin-top: 12vh;
 }
 
 .mainTable th {
@@ -28,6 +32,29 @@ table {
   height: 100%;
 }
 
+.detailsModal {
+  display: flex;
+  height: 92vh;
+  justify-self: center;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background-color: rgba(23, 22, 22, 0.961);
+}
+
+@media (min-width: 36em) {
+  .mainTable td,
+  table {
+    padding: 8px 12px;
+  }
+}
+@media (min-width: 50em) {
+  .mainTable td,
+  table {
+    padding: 8px 24px;
+  }
+}
 @media (max-width: 36em) {
   .mainTable td,
   table {
