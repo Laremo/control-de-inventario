@@ -35,9 +35,8 @@ table {
 .detailsModal {
   display: flex;
   height: 92vh;
-  justify-self: center;
-  align-self: center;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   border-radius: 4px;
   background-color: rgba(23, 22, 22, 0.961);
@@ -58,6 +57,7 @@ table {
 @media (max-width: 36em) {
   .mainTable td,
   table {
-    padding: 8px 8px;
+    padding: 6px 2px;
+    font-size: 0.8rem;
   }
 }

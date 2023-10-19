@@ -1,0 +1,117 @@
+.topRibbon {
+  display: flex;
+  width: 100%;
+  height: 12%;
+  align-items: center;
+}
+
+.returnBtn {
+  position: absolute;
+  width: auto;
+  justify-self: flex-start;
+  padding: 8px 16px;
+}
+
+.returnBtn button {
+  height: 32px;
+  width: 52px;
+}
+
+.titleDetail {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+}
+
+.detailsContent {
+  display: flex;
+  height: 80%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.detailsForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 45%;
+  height: 90%;
+  overflow: scroll;
+  border: solid 2px rgba(255, 255, 255, 0.643);
+}
+
+.detailsForm label {
+  width: 70%;
+  font-weight: bold;
+  text-align: center;
+  margin: 12px 0px 0px 0px;
+  border-bottom: 1px solid #ffffff41;
+}
+
+.detailsField {
+  width: 65%;
+  max-width: 400px;
+  background: radial-gradient(
+    circle,
+    rgba(4, 0, 67, 0.579) 0%,
+    rgba(5, 5, 109, 0.303) 70%,
+    rgba(0, 39, 255, 0) 100%
+  );
+  border-radius: 12px;
+  height: 25px;
+  padding: 4px 12px;
+}
+
+.detailsInput {
+  width: 65%;
+  max-width: 400px;
+  height: 25px;
+  padding: 2px 12px;
+  text-align: center;
+  font-size: 1.05rem;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-around;
+  justify-self: flex-end;
+  padding: 8px 16px;
+  margin: 8px 0px ;
+  width: 35%;
+}
+.buttonContainer button {
+  padding: 4px 6px;
+}
+
+.available {
+  font-size: 1.05rem;
+  font-weight: bold;
+  background: radial-gradient(
+    circle,
+    rgba(0, 67, 20, 0.579) 0%,
+    rgba(5, 109, 93, 0.303) 70%,
+    rgba(0, 39, 255, 0) 100%
+  );
+}
+.used {
+  font-size: 1.05rem;
+  font-weight: bold;
+  background: radial-gradient(
+    circle,
+    rgba(36, 29, 45, 0.591) 0%,
+    rgba(49, 49, 86, 0.303) 70%,
+    rgba(0, 39, 255, 0) 100%
+  );
+}
+.damaged {
+  font-size: 1.05rem;
+  font-weight: bold;
+  background: radial-gradient(
+    circle,
+    rgba(67, 0, 0, 0.579) 0%,
+    rgba(93, 3, 3, 0.303) 70%,
+    rgba(0, 39, 255, 0) 100%
+  );
+}
