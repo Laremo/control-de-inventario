@@ -10,9 +10,16 @@ export default function Container() {
   const [detailsVisible, setDetailsVisible] = useState(false);
   const [detailsIndex, setDetailsIndex] = useState(-1);
 
-  useEffect(() => {
-    let dataSource = '';
+  const obtainData = (dataSource) => {
+    fetch('http://localhost:8080/api/' + dataSource)
+      .then((result) => result.json())
+      .then((data) => {
+        setItems(data);
+      });
+  };
 
+  const selectDatasource = () => {
+    let dataSource = '';
     switch (mode) {
       case 0:
         dataSource = 'device';
@@ -24,12 +31,12 @@ export default function Container() {
         dataSource = 'loan';
         break;
     }
+    return dataSource;
+  };
 
-    fetch('http://localhost:8080/api/' + dataSource)
-      .then((result) => result.json())
-      .then((data) => {
-        setItems(data);
-      });
+  useEffect(() => {
+    const dataSource = selectDatasource();
+    obtainData(dataSource);
   }, [mode]);
 
   const openDetails = (item) => {
@@ -40,6 +47,7 @@ export default function Container() {
 
   const closeDetails = () => {
     setDetailsVisible(false);
+    obtainData(selectDatasource());
     setDetailsIndex(-1);
   };
 
@@ -58,6 +66,7 @@ export default function Container() {
           <DetailsContainer
             mode={mode}
             item={items[detailsIndex]}
+            closeDetails={closeDetails}
           />
         </div>
       ) : (

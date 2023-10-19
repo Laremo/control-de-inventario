@@ -21,8 +21,10 @@ class Device {
   ) {
     this.IdDevice = IdDevice;
     this.Name = Name;
+    this.idType = idType;
     this.Type = DeviceTypes[`${idType}`];
     this.Make = Make;
+    this.idStatus = Status;
     this.Status = Statuses[`${Status}`];
     this.Description = Description;
   }

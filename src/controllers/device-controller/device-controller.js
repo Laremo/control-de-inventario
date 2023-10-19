@@ -25,13 +25,15 @@ deviceController.getDevices = async (_, res) => {
 
 deviceController.updateDevice = async (req, res) => {
   try {
-    const { IdDevice, updatedDevice } = req.body;
-    const result = await deviceService.updateDevice(IdDevice, updatedDevice);
+    const { idDevice, updatedDevice } = req.body;
+    console.log(req.body);
+    const result = await deviceService.updateDevice(idDevice, updatedDevice);
 
     if (result?.message) return res.status(209).json({ error: result.message });
 
     return res.status(200).json(result);
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: error.message });
   }
 };
