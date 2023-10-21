@@ -14,6 +14,7 @@ export default function Container() {
   const [detailsVisible, setDetailsVisible] = useState(false);
   const [detailsIndex, setDetailsIndex] = useState(-1);
   const [createVisible, setCreateVisible] = useState(false);
+
   const obtainData = (dataSource) => {
     fetch(`${constants.baseUrl}/` + dataSource)
       .then((result) => result.json())
@@ -38,11 +39,6 @@ export default function Container() {
     return dataSource;
   };
 
-  useEffect(() => {
-    const dataSource = selectDatasource();
-    obtainData(dataSource);
-  }, [mode]);
-
   const openDetails = (item) => {
     const it = items.findIndex((it) => it === item);
     setDetailsVisible(true);
@@ -51,8 +47,8 @@ export default function Container() {
 
   const closeDetails = () => {
     setDetailsVisible(false);
-    obtainData(selectDatasource());
     setDetailsIndex(-1);
+    obtainData(selectDatasource());
   };
 
   const closeCreate = () => {
@@ -60,6 +56,11 @@ export default function Container() {
     obtainData(selectDatasource());
   };
 
+  useEffect(() => {
+    const dataSource = selectDatasource();
+    setDetailsVisible(false);
+    obtainData(dataSource);
+  }, [mode]);
   return (
     <>
       <div className={styles.main}>

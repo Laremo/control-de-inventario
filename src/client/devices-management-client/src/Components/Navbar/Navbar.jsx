@@ -38,25 +38,28 @@ export default function Navbar({ mode, setMode, closeDetails }) {
         <ul id='navigation'>
           <li
             className={mode === 0 ? styles.active : ''}
-            onClick={() => {
+            onClick={(e) => {
               setMode(0);
-              closeDetails();
+              // closeDetails();
+              e.preventDefault();
             }}>
             <span>Control de Dispositivos</span>
           </li>
           <li
             className={mode === 1 ? styles.active : ''}
-            onClick={() => {
+            onClick={(e) => {
               setMode(1);
-              closeDetails();
+              // closeDetails();
+              e.preventDefault();
             }}>
             <span>Control de Usuarios</span>
           </li>
           <li
             className={mode === 2 ? styles.active : ''}
-            onClick={() => {
+            onClick={(e) => {
               setMode(2);
-              closeDetails();
+              // closeDetails();
+              e.preventDefault();
             }}>
             <span>Control de Préstamos</span>
           </li>
