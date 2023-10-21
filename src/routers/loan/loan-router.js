@@ -4,9 +4,10 @@ import { Router } from 'express';
 const loanRouter = Router();
 
 loanRouter.get('/', loanController.getLoans);
-loanRouter.get('/:user', loanController.getHistory);
+loanRouter.post('/user/', loanController.getHistory);
+loanRouter.post('/device/', loanController.getDeviceHistory);
 loanRouter.post('/', loanController.registerLoan);
-loanRouter.put('/:id', loanController.updateLoan);
+loanRouter.put('/', loanController.updateLoan);
 loanRouter.delete('/:id', loanController.deleteLoan);
 
 export default loanRouter;

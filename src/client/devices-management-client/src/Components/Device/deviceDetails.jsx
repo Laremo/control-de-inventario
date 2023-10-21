@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from '../Details-container/details-container.module.css';
+import constants from '../../utils/constants';
 
 export default function DeviceDetails({
   item,
@@ -13,6 +14,8 @@ export default function DeviceDetails({
   const [idType, setIdType] = useState(item.idType);
   const [Type, setType] = useState(item.Type);
   const [status] = useState(item.Status);
+
+  const [showMessage, setShowMessage] = useState('');
 
   const toggleEditable = (e) => {
     setEditable(!editable);
@@ -37,18 +40,18 @@ export default function DeviceDetails({
 
     const data = { idDevice: item.IdDevice, updatedDevice: updatedItem };
 
-    const result = await (
-      await fetch('http://localhost:8080/api/device/' + item.IdDevice, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      })
-    ).json();
+    const result = await fetch(`${constants.baseUrl}/device/` + item.IdDevice, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
 
-    if (result?.error) {
-      console.log(result?.error);
+    if (result.status !== 200) {
+      setShowMessage('No se pudo actualizar!');
+    } else {
+      setShowMessage('Guardado existosamente! ');
     }
     toggleEditable(e);
   };

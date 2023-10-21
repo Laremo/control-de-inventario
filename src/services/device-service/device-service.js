@@ -11,9 +11,13 @@ deviceService.saveDevice = async (device) => {
   }
 };
 
-deviceService.getDevices = async () => {
+deviceService.getDevices = async (available) => {
   try {
-    const devices = await deviceDB.getDevices();
+    if (!available) {
+      const devices = await deviceDB.getDevices();
+      return devices;
+    }
+    const devices = await deviceDB.getAvailable();
     return devices;
   } catch (error) {
     throw error;

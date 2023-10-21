@@ -1,3 +1,4 @@
+import User from '../../models/user-model/User.js';
 import userDb from '../../database/users-DB.js';
 const userService = {};
 
@@ -21,7 +22,20 @@ userService.getUsers = async () => {
 
 userService.updateUser = async (idUser, updatedUser) => {
   try {
-    const result = await userDb.updateUser(idUser, updatedUser);
+    const { Firstname, Lastname, Phone, Email } = updatedUser;
+    const existing = await userDb.getUser(idUser);
+
+    if (!existing) return new Error("user doesn't exist");
+
+    const formattedUser = new User(
+      existing.IdUser,
+      Firstname,
+      Lastname,
+      Phone,
+      Email
+    );
+
+    const result = await userDb.updateUser(idUser, formattedUser);
     return result;
   } catch (error) {
     throw error;

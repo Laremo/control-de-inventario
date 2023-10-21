@@ -1,6 +1,6 @@
 import styles from '../Tablebody/tablebody.module.css';
 
-export default function User({ item }) {
+export default function User({ item, openDetails }) {
   const { IdUser, Firstname, Email, Lastname, Phone } = item;
   return (
     <tr>
@@ -10,7 +10,7 @@ export default function User({ item }) {
       <td className={styles.hideOnMob}>{Phone}</td>
       <td className={styles.hideOnMob}>{Email}</td>
       <td>
-        <button>Detalles</button>
+        <button onClick={() => openDetails(item)}>Detalles</button>
       </td>
     </tr>
   );

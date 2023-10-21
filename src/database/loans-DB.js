@@ -2,11 +2,19 @@ import userDb from './users-DB.js';
 import deviceDb from './devices-DB.js';
 import Loan from '../models/loan-model/Loan.js';
 import JoinedLoan from '../models/loan-model/Joined-Loan.js';
+import deviceService from '../services/device-service/device-service.js';
 
 const loans = [
   //  (device, user, date)
-  new Loan(1, 2, new Date('2023-10-10').toISOString()),
+  new Loan(
+    1,
+    2,
+    new Date('2023-10-10').toISOString(),
+    new Date('2023-10-12').toISOString()
+  ),
   new Loan(3, 3, new Date('2023-10-10').toISOString()),
+  new Loan(2, 2, new Date('2023-10-10').toISOString()),
+  new Loan(1, 3, new Date('2023-10-10').toISOString()),
 ];
 
 const loanDB = {};
@@ -17,8 +25,8 @@ loanDB.saveLoan = async (loan) => {
   if (device.Status > 1) return new Error('This device is not available');
 
   //update device status
-  device.Status = 2;
-  await deviceDb.updateDevice(device.IdDevice, device);
+  device.idStatus = 2;
+  await deviceService.updateDevice(device.IdDevice, device);
 
   loans.push(loan);
   return loans;
@@ -37,49 +45,69 @@ loanDB.getLoans = async () => {
 
 loanDB.getDeviceLoans = async (idDevice) => {
   const joined = [];
-  const deviceLoans = loans.map((loan) => loan.idDevice === idDevice);
+  const deviceLoans = loans.filter((loan) => loan.idDevice === idDevice);
   if (!deviceLoans) return new Error('Loan does not exist');
 
   for (const ln of deviceLoans) {
     const device = await deviceDb.getDevice(ln.idDevice);
     const user = await userDb.getUser(ln.idUser);
-    joined.push(device, user, ln.loanDate, ln.returnDate);
+    joined.push({
+      device: device,
+      user: user,
+      loanDate: ln.loanDate,
+      returnDate: ln.returnDate,
+    });
   }
 
   return joined;
 };
 
 loanDB.getHistory = async (idUser) => {
-  const userLoans = loans.map((loan) => loan.idUser === idUser);
+  const userLoans = loans.filter((loan) => loan.idUser === idUser);
   const joined = [];
+
   if (!userLoans) return new Error('No Loans registered');
 
-  for (const loan of userLoans) {
+  for (const ln of userLoans) {
     const user = await userDb.getUser(ln.idUser);
     const device = await deviceDb.getDevice(ln.idDevice);
-    joined.push(device, user, ln.loanDate, ln.returnDate);
+    joined.push({
+      device: device,
+      user: user,
+      loanDate: ln.loanDate,
+      returnDate: ln.returnDate,
+    });
   }
 
   return joined;
 };
 
-loanDB.updateLoan = async (idUser, idDevice, updatedLoan, options) => {
+loanDB.updateLoan = async (
+  idUser,
+  idDevice,
+  loanDate,
+  updatedLoan,
+  options
+) => {
+  //key : idUser, idDevice, loanDate
   const index = loans.findIndex(
-    (loan) => loan.idUser === idUser && loan.idDevice === idDevice
+    (loan) =>
+      loan.idUser === idUser &&
+      loan.idDevice === idDevice &&
+      loanDate === loan.loanDate
   );
-  if (!index) return new Error("Loan doesn't exist");
 
-  if (options.isReturning) {
-    const device = await deviceDb.getDevice(idDevice);
-    if (!device) return new Error('This device does not exist');
+  if (index < 0) return new Error("Loan doesn't exist");
 
-    //if its damaged, we send 3, else, we send 1, available
-    device.Status = options.isDamaged ? 3 : 1;
+  const device = await deviceDb.getDevice(idDevice);
+  if (!device) return new Error('This device does not exist');
 
-    await deviceDb.updateDevice(idDevice, device);
-  }
+  //if its damaged, we send 3, else, we send 1, available
+  device.idStatus = options.isDamaged ? 3 : 1;
 
-  loans[index] = updatedLoan;
+  await deviceService.updateDevice(idDevice, device);
+
+  loans[index].returnDate = updatedLoan.returnDate;
 
   return updatedLoan;
 };

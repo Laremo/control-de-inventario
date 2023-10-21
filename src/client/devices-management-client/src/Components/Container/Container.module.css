@@ -1,18 +1,20 @@
 .main {
   overflow-x: hidden;
   flex: 1;
+  transition: 300ms;
 }
 
 .content {
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
   height: 92vh;
   flex: 1;
 }
 
 .mainTable {
-  margin-top: 12vh;
+  margin-top: 5vh;
 }
 
 .mainTable th {
@@ -30,6 +32,8 @@ table {
 .mainTable button {
   width: 100%;
   height: 100%;
+  padding: 2px 4px;
+  cursor: pointer;
 }
 
 .detailsModal {
@@ -42,22 +46,73 @@ table {
   background-color: rgba(23, 22, 22, 0.961);
 }
 
+.btnContainer {
+  margin-top: 5vh;
+  width: 100%;
+  justify-self: center;
+}
+.btnContainer button {
+  padding: 12px 8px;
+  background-color: #0d5820;
+  border-radius: 4px;
+  border: 1px solid rgba(3, 49, 8, 0.646);
+  transition: 100ms;
+}
+.btnContainer button:hover {
+  background-color: #1b642d;
+  border: 1px solid rgba(7, 136, 22, 0.646);
+  cursor: pointer;
+  transition: 100ms;
+}
+.btnContainer button:active {
+  background-color: #113c1c;
+  border: 1px solid rgba(3, 70, 11, 0.646);
+  cursor: pointer;
+  transition: 100ms;
+}
+
 @media (min-width: 36em) {
   .mainTable td,
   table {
     padding: 8px 12px;
   }
+  /* .mainTable {
+    width: 100%;
+  } */
 }
+@media (max-width: 500px) {
+  .mainTable td,
+  table {
+    padding: 8px 16px;
+  }
+  .mainTable {
+    width: 100%;
+  }
+}
+@media (max-width: 435px) {
+  .mainTable td,
+  table {
+    padding: 8px 1px;
+    /* font-size: 0.8rem; */
+  }
+  .mainTable {
+    width: 100%;
+  }
+}
+@media (max-width: 380px) {
+  .mainTable td,
+  table {
+    padding: 8px 1px;
+    font-size: 0.8rem;
+  }
+  .mainTable {
+    width: 100%;
+  }
+}
+
 @media (min-width: 50em) {
   .mainTable td,
   table {
     padding: 8px 24px;
-  }
-}
-@media (max-width: 36em) {
-  .mainTable td,
-  table {
-    padding: 6px 2px;
-    font-size: 0.8rem;
   }
 }

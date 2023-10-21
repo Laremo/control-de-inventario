@@ -5,6 +5,7 @@ import deviceValidations from './middleware/validate-device.js';
 const deviceRouter = Router();
 
 deviceRouter.get('/', deviceController.getDevices);
+deviceRouter.get('/available', deviceController.getAvailableDevices);
 deviceRouter.post(
   '/',
   deviceValidations.validateSaveRequest,

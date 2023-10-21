@@ -39,10 +39,12 @@
   width: 45%;
   height: 90%;
   overflow: scroll;
-  border: solid 2px rgba(255, 255, 255, 0.643);
+  padding: 4px 2px 2px 0px;
+  border: solid 1.1px rgba(255, 255, 255, 0.643);
 }
 
-.detailsForm label {
+.detailsForm label,
+.loanForm label {
   width: 70%;
   font-weight: bold;
   text-align: center;
@@ -50,16 +52,37 @@
   border-bottom: 1px solid #ffffff41;
 }
 
+.detailsForm select,
+.loanForm select {
+  width: 65%;
+  height: auto;
+  font-weight: bold;
+  font-size: 1.01rem;
+  text-align: center;
+  padding: 4px 12px;
+}
+
+.loanForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 45%;
+  height: 70%;
+  overflow: scroll;
+  border: solid 2px rgba(255, 255, 255, 0.643);
+}
+
 .detailsField {
   width: 65%;
   max-width: 400px;
   background: radial-gradient(
     circle,
-    rgba(4, 0, 67, 0.579) 0%,
-    rgba(5, 5, 109, 0.303) 70%,
+    rgba(23, 18, 57, 0.579) 0%,
+    rgba(11, 11, 88, 0.303) 70%,
     rgba(0, 39, 255, 0) 100%
   );
-  border-radius: 12px;
+  border-radius: 16px;
   height: 25px;
   padding: 4px 12px;
 }
@@ -78,11 +101,65 @@
   justify-content: space-around;
   justify-self: flex-end;
   padding: 8px 16px;
-  margin: 8px 0px ;
+  margin: 8px 0px;
   width: 35%;
 }
 .buttonContainer button {
   padding: 4px 6px;
+}
+
+.itemContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.itemContainer h3 {
+  margin: 4px 2px 0px 2px;
+}
+.itemContainer label {
+  font-size: 0.9rem;
+  margin: 2px 2px 0px 2px;
+}
+.itemContainer input {
+  width: 60%;
+  text-align: center;
+  font-size: 1.01rem;
+  background-color: rgb(34, 32, 41);
+}
+
+.historyContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  justify-content: flex-start;
+  align-items: center;
+}
+.historyContainer h3 {
+  display: flex;
+  margin-top: 8px;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+  border-bottom: #ffffff41 solid 1px;
+}
+.historyContainer h4 {
+  margin-top: 40px;
+  width: 95%;
+  height: 35px;
+  border: #ffffff41 solid 1px;
+}
+.historyContainer table {
+  width: 101%;
+  margin: 0;
+  border-left: none;
+  border-right: none;
+}
+.historyContainer td {
+  padding: 12px;
 }
 
 .available {
@@ -114,4 +191,39 @@
     rgba(93, 3, 3, 0.303) 70%,
     rgba(0, 39, 255, 0) 100%
   );
+}
+
+.checkDiv {
+  display: flex;
+  width: 70%;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  padding: 0;
+  margin-top: 4px;
+}
+
+.checkbox {
+  margin: 2px;
+  width: 12px !important;
+}
+
+.checkLabel {
+  margin: 0;
+  font-weight: normal;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 585px) {
+  .detailsContent {
+    width: 95%;
+    flex-direction: column;
+    height: fit-content;
+  }
+  .detailsForm {
+    width: 100%;
+    flex-direction: column;
+    height: fit-content;
+  }
 }
