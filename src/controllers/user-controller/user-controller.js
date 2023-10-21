@@ -25,7 +25,7 @@ userController.getUsers = async (_, res) => {
 userController.updateUser = async (req, res) => {
   try {
     const { idUser, updatedUser } = req.body;
-    const result = await deviceService.updateDevice(idUser, updatedUser);
+    const result = await userService.updateUser(idUser, updatedUser);
 
     if (result?.message) return res.status(209).json({ error: result.message });
 
@@ -38,7 +38,7 @@ userController.updateUser = async (req, res) => {
 userController.deleteUser = async (req, res) => {
   try {
     const { idUser } = req.body;
-    const result = await deviceService.deleteUser(idUser);
+    const result = await userService.deleteUser(idUser);
 
     if (result?.message) return res.status(209).json({ error: result.message });
 

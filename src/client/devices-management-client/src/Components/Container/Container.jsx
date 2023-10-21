@@ -4,14 +4,18 @@ import { useEffect, useState } from 'react';
 import Tablehead from '../Tablehead/Tablehead';
 import Tablebody from '../Tablebody/Tablebody';
 import DetailsContainer from '../Details-container/detailsContainer';
+import CreateContainer from '../Details-container/createContainer';
+
+import constants from '../../utils/constants';
+
 export default function Container() {
   const [mode, setMode] = useState(0);
   const [items, setItems] = useState([]);
   const [detailsVisible, setDetailsVisible] = useState(false);
   const [detailsIndex, setDetailsIndex] = useState(-1);
-
+  const [createVisible, setCreateVisible] = useState(false);
   const obtainData = (dataSource) => {
-    fetch('http://localhost:8080/api/' + dataSource)
+    fetch(`${constants.baseUrl}/` + dataSource)
       .then((result) => result.json())
       .then((data) => {
         setItems(data);
@@ -51,6 +55,11 @@ export default function Container() {
     setDetailsIndex(-1);
   };
 
+  const closeCreate = () => {
+    setCreateVisible(false);
+    obtainData(selectDatasource());
+  };
+
   return (
     <>
       <div className={styles.main}>
@@ -69,8 +78,20 @@ export default function Container() {
             closeDetails={closeDetails}
           />
         </div>
+      ) : createVisible ? (
+        <div className={styles.detailsModal}>
+          <CreateContainer
+            mode={mode}
+            closeCreate={closeCreate}
+          />
+        </div>
       ) : (
         <div className={styles.content}>
+          <div className={styles.btnContainer}>
+            <button onClick={() => setCreateVisible(true)}>
+              Registrar Nuevo
+            </button>
+          </div>
           <table className={styles.mainTable}>
             <thead>
               <Tablehead mode={mode} />

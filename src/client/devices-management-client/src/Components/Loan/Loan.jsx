@@ -1,6 +1,6 @@
 import styles from '../Tablebody/tablebody.module.css';
 
-export default function Loan({ item }) {
+export default function Loan({ item, openDetails }) {
   const { device, user, loanDate, returnDate } = item;
 
   const formatDate = (isostringDate) => {
@@ -8,8 +8,8 @@ export default function Loan({ item }) {
       const temp = new Date(isostringDate);
       const formatted = new Intl.DateTimeFormat('es-Mx', {
         year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
       }).format(temp);
       return formatted;
     } catch (err) {
@@ -25,7 +25,7 @@ export default function Loan({ item }) {
       <td>{formatDate(loanDate)}</td>
       <td>{returnDate ? formatDate(returnDate) : 'NA'}</td>
       <td>
-        <button>Detalles</button>
+        <button onClick={() => openDetails(item)}>Detalles</button>
       </td>
     </tr>
   );

@@ -35,7 +35,12 @@ export default function DetailsContainer({ item, mode, closeDetails }) {
             showHistory={showHistory}
             toggleShowHistory={toggleShowHistory}
           />
-          {showHistory ? <HistoryContainer /> : null}
+          {showHistory ? (
+            <HistoryContainer
+              mode={mode}
+              item={item}
+            />
+          ) : null}
         </div>
       </>
     );
@@ -53,15 +58,21 @@ export default function DetailsContainer({ item, mode, closeDetails }) {
             </button>
           </div>
           <div className={styles.titleDetail}>
-            <h1>Detalles de dispositivo</h1>
+            <h1>Detalles de usuario</h1>
           </div>
         </div>
-        <div>
+        <div className={styles.detailsContent}>
           <UserDetails
             item={item}
             showHistory={showHistory}
             toggleShowHistory={toggleShowHistory}
           />
+          {showHistory ? (
+            <HistoryContainer
+              mode={mode}
+              item={item}
+            />
+          ) : null}
         </div>
       </>
     );
@@ -82,12 +93,8 @@ export default function DetailsContainer({ item, mode, closeDetails }) {
             <h1>Detalles de dispositivo</h1>
           </div>
         </div>
-        <div>
-          <LoanDetails
-            item={item}
-            showHistory={showHistory}
-            toggleShowHistory={toggleShowHistory}
-          />
+        <div className={styles.detailsContent}>
+          <LoanDetails item={item} />
         </div>
       </>
     );

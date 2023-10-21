@@ -3,7 +3,7 @@ const deviceDB = {};
 
 const devices = [
   new Device(1, 'tableta morada', 3, 'Toshiba', 2, "Tableta de 11'"),
-  new Device(2, "Laptop 16'", 2, 'Lenovo', 1, 'Lenovo Flex'),
+  new Device(2, "Laptop 16'", 2, 'Lenovo', 2, 'Lenovo Flex'),
   new Device(3, 'Xiaomi E3', 1, 'Xiaomi', 2, "Celular 5.6' "),
 ];
 
@@ -23,6 +23,11 @@ deviceDB.saveDevice = async (device) => {
 
 deviceDB.getDevices = async () => {
   return devices;
+};
+
+deviceDB.getAvailable = async () => {
+  const dev = devices.filter((device) => device.idStatus === 1);
+  return dev;
 };
 
 deviceDB.getDevice = async (idDevice) => {

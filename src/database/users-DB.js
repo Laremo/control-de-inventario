@@ -17,7 +17,7 @@ userDb.saveUser = async (user) => {
   users.map((user) => (maxId = user.IdUser > maxId ? user.IdUser : maxId));
 
   const { Firstname, Lastname, Phone, Email } = user;
-  const userToAdd = new User(maxId, Firstname, Lastname, Phone, Email);
+  const userToAdd = new User(maxId + 1, Firstname, Lastname, Phone, Email);
 
   users.push(userToAdd);
   return users;
@@ -34,7 +34,8 @@ userDb.getUser = async (idUser) => {
 
 userDb.updateUser = async (idUser, updatedUser) => {
   const index = users.findIndex((user) => user.IdUser === idUser);
-  if (!index) return new Error("User doesn't exist");
+
+  if (index < 0) return new Error("User doesn't exist");
 
   users[index] = updatedUser;
   return updatedUser;
@@ -43,7 +44,7 @@ userDb.updateUser = async (idUser, updatedUser) => {
 userDb.deleteUser = async (idUser) => {
   const found = users.findIndex((User) => User.IdUser === idUser);
   if (!found) return new Error("User doesn't exist");
-  
+
   users = users.splice(found, 1);
 
   return users;
